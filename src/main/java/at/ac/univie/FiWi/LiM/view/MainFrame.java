@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
 
     MenuBar menuBar = new MenuBar(appController);
     this.setJMenuBar(menuBar);
-    this.setTitle("LiM Option Valuation");
+    this.setTitle("LiM Option Pricing");
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
   }
 }

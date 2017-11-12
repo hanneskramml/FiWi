@@ -5,20 +5,22 @@ import java.awt.event.ActionListener;
 
 public class MenuBar extends JMenuBar {
 
-  public static final String MENU_ITEM_QUIT = "Programm beenden";
+  public static final String MENU_ITEM_QUIT = "Quit Application";
 
   public MenuBar(ActionListener actionListener) {
     super();
 
     JMenuBar menuBar = new JMenuBar();
-    JMenu fileMenu = new JMenu("Datei");
+    JMenu fileMenu = new JMenu("File");
     menuBar.add(fileMenu);
 
-    fileMenu.addSeparator();
-
+    //fileMenu.addSeparator();
     JMenuItem closeItem = new JMenuItem(MENU_ITEM_QUIT);
     closeItem.addActionListener(actionListener);
     fileMenu.add(closeItem);
+
+    JMenu graphMenu = new JMenu("Graph");
+    menuBar.add(graphMenu);
 
     this.add(menuBar);
   }
