@@ -2,22 +2,34 @@ package at.ac.univie.FiWi.LiM.model;
 
 public abstract class Option {
 
-  private double initialStockPrice;
-  private double maturity;
+  private double optionPrice;
   private double strikePrice;
+  private double maturity;
+  private double volatility;
+  private double riskFreeRate;
 
-  public Option(double initialStockPrice, double maturity, double strikePrice) {
-    this.initialStockPrice = initialStockPrice;
-    this.maturity = maturity;
+  public Option(double optionPrice, double strikePrice, double maturity, double volatility, double riskFreeRate) {
+    this.optionPrice = optionPrice;
     this.strikePrice = strikePrice;
+    this.maturity = maturity;
+    this.volatility = volatility;
+    this.riskFreeRate = riskFreeRate;
   }
 
-  public double getInitialStockPrice() {
-    return initialStockPrice;
+  public double getOptionPrice() {
+    return optionPrice;
   }
 
-  public void setInitialStockPrice(double initialStockPrice) {
-    this.initialStockPrice = initialStockPrice;
+  public void setOptionPrice(double optionPrice) {
+    this.optionPrice = optionPrice;
+  }
+
+  public double getStrikePrice() {
+    return strikePrice;
+  }
+
+  public void setStrikePrice(double strikePrice) {
+    this.strikePrice = strikePrice;
   }
 
   public double getMaturity() {
@@ -28,12 +40,20 @@ public abstract class Option {
     this.maturity = maturity;
   }
 
-  public double getStrikePrice() {
-    return strikePrice;
+  public double getVolatility() {
+    return volatility;
   }
 
-  public void setStrikePrice(double strikePrice) {
-    this.strikePrice = strikePrice;
+  public void setVolatility(double volatility) {
+    this.volatility = volatility;
+  }
+
+  public double getRiskFreeRate() {
+    return riskFreeRate;
+  }
+
+  public void setRiskFreeRate(double riskFreeRate) {
+    this.riskFreeRate = riskFreeRate;
   }
 
   public abstract double getPayoff(double underlyingMarketValue);

@@ -1,8 +1,8 @@
 package at.ac.univie.FiWi.LiM.model;
 
-public class EuropeanPutOption extends Option {
+public class PutOption extends Option {
 
-  public EuropeanPutOption(double optionPrice, double strikePrice, double maturity, double volatility, double riskFreeRate) {
+  public PutOption(double optionPrice, double strikePrice, double maturity, double volatility, double riskFreeRate) {
     super(optionPrice, strikePrice, maturity, volatility, riskFreeRate);
   }
 

@@ -6,32 +6,35 @@ import java.util.Random;
 
 public class MonteCarloSimulation {
 
-  public static int NUM_OF_SIMULATIONS = 1000000;
-  public static double EXPECTED_VALUE = 0;
-  public static double DISPERSION = 0.2;
-  public static double VARIANCE = DISPERSION * DISPERSION;
-  public static double RISK_FREE_RATE = 0.05;
-  public static double EXPIRY_TIME = 1;
+  private static final int DEFAULT_NUM_OF_SIMULATIONS = 10000000;
+  private static final Random random = new Random();
 
   public static double runSimulation(Option option) {
-
-    double payoff = 0;
-    int i = 0;
-
-    for (; i < NUM_OF_SIMULATIONS; i++) {
-      double result = calculateMarketValue(option.getInitialStockPrice(), option.getMaturity(), 1);
-      payoff += option.getPayoff(result);
-    }
-
-    return payoff / Math.exp(-RISK_FREE_RATE * option.getMaturity()) * NUM_OF_SIMULATIONS;
+    return runSimulation(option, DEFAULT_NUM_OF_SIMULATIONS);
   }
 
-  private static double calculateMarketValue(double initialStockPrice, double maturity, int steps) {
-    Random random = new Random();
+  public static double runSimulation(Option option, int numOfSimulations) {
+    double totalPayoff = 0;
+    int i = 0;
+
+    for (; i < numOfSimulations; i++) {
+      double marketValue = calculateMarketValue(option, 1);
+      totalPayoff += option.getPayoff(marketValue);
+    }
+
+    return Math.exp(-option.getRiskFreeRate() * option.getMaturity()) * totalPayoff / numOfSimulations;
+  }
+
+  private static double calculateMarketValue(Option option, int steps) {
+    double optionPrice = option.getOptionPrice();
+    double maturity = option.getMaturity();
+    double dispersion = option.getVolatility(); //volatility of the underlying (sigma)
+    double variance = dispersion * dispersion;
+    double expectedValue = option.getRiskFreeRate(); //option drift - in case of risk-neutral measure equals to risk free rate
 
     if (steps == 0)
-      return initialStockPrice;
+      return optionPrice;
     else
-     return calculateMarketValue(initialStockPrice, maturity, steps-1) * Math.exp((EXPECTED_VALUE - VARIANCE * EXPIRY_TIME) * maturity / steps + DISPERSION * Math.sqrt(maturity / steps) * random.nextGaussian());
+      return calculateMarketValue(option, steps-1) * Math.exp((expectedValue - variance * 0.5) * option.getMaturity() / steps + dispersion * Math.sqrt(maturity / steps) * random.nextGaussian());
   }
 }

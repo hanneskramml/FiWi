@@ -2,8 +2,8 @@ package at.ac.univie.FiWi.LiM.model;
 
 public class EuropeanCallOption extends Option {
 
-  public EuropeanCallOption(double initialStockPrice, double maturity, double strikePrice) {
-    super(initialStockPrice, maturity, strikePrice);
+  public EuropeanCallOption(double optionPrice, double strikePrice, double maturity, double volatility, double riskFreeRate) {
+    super(optionPrice, strikePrice, maturity, volatility, riskFreeRate);
   }
 
   @Override

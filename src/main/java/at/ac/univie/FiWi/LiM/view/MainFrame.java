@@ -1,16 +1,14 @@
 package at.ac.univie.FiWi.LiM.view;
 
 import at.ac.univie.FiWi.LiM.controller.AppController;
-import at.ac.univie.FiWi.LiM.model.CallOption;
 import at.ac.univie.FiWi.LiM.model.EuropeanCallOption;
 import at.ac.univie.FiWi.LiM.model.EuropeanPutOption;
 import at.ac.univie.FiWi.LiM.service.MonteCarloSimulation;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.*;
 
 public class MainFrame extends JFrame {
 	
@@ -38,12 +36,14 @@ public class MainFrame extends JFrame {
   	  public void actionPerformed(ActionEvent e) {
   	    if(e.getActionCommand().equals("europeanOption"))
   	    {
-  	      SetMonteCarloSimulation();
-  	      double initStockPrice = (double) initialStockPriceSpinner.getValue();
+  	      double optionPrice = (double) initialStockPriceSpinner.getValue();
   	      double maturity = (double) maturitySpinner.getValue();
-  	      double stackPrice = (double) strikePriceSpinner.getValue();
-  	      double callValue = MonteCarloSimulation.runSimulation(new EuropeanCallOption(initStockPrice,maturity,stackPrice));
-  	      double putValue = MonteCarloSimulation.runSimulation(new EuropeanPutOption(initStockPrice,maturity,stackPrice));
+  	      double strikePrice = (double) strikePriceSpinner.getValue();
+  	      double volatility = (double) dispersionSpinner.getValue();
+  	      double riskFreeRate = (double) riskFreeRateSpinner.getValue();
+  	      int numOfSimulations = (int) numOfSimulationsSpinner.getValue();
+  	      double callValue = MonteCarloSimulation.runSimulation(new EuropeanCallOption(optionPrice,strikePrice,maturity,volatility,riskFreeRate), numOfSimulations);
+  	      double putValue = MonteCarloSimulation.runSimulation(new EuropeanPutOption(optionPrice,strikePrice,maturity,volatility,riskFreeRate), numOfSimulations);
   	      labelEuropeanCall.setText("European Option Call Value: " + callValue);
   	      labelEuropeanPut.setText("European Option Put Value: " + putValue);
   	    }
@@ -104,11 +104,5 @@ public class MainFrame extends JFrame {
 	  panel.add(label7);
 	  panel.add(riskFreeRateSpinner);
   }
-  public void SetMonteCarloSimulation()
-  {
-	  MonteCarloSimulation.DISPERSION = (double) dispersionSpinner.getValue();
-	  MonteCarloSimulation.EXPIRY_TIME = (double) expiryTimeSpinner.getValue();
-	  MonteCarloSimulation.NUM_OF_SIMULATIONS = (int) numOfSimulationsSpinner.getValue();
-	  MonteCarloSimulation.RISK_FREE_RATE = (double) riskFreeRateSpinner.getValue();
-  }
+
 }
