@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 public class MenuBar extends JMenuBar {
 
   public static final String MENU_ITEM_QUIT = "Quit Application";
+  public static final String MENU_ITEM_PRICEPATH_GRAPH = "Show Price Paths";
+
 
   public MenuBar(ActionListener actionListener) {
     super();
@@ -19,8 +21,12 @@ public class MenuBar extends JMenuBar {
     closeItem.addActionListener(actionListener);
     fileMenu.add(closeItem);
 
-    JMenu graphMenu = new JMenu("Graph");
-    menuBar.add(graphMenu);
+    JMenu chartMenu = new JMenu("Chart");
+    menuBar.add(chartMenu);
+
+    JMenuItem pricePathItem = new JMenuItem(MENU_ITEM_PRICEPATH_GRAPH);
+    pricePathItem.addActionListener(actionListener);
+    chartMenu.add(pricePathItem);
 
     this.add(menuBar);
   }
