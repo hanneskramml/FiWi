@@ -1,7 +1,5 @@
 package at.ac.univie.FiWi.LiM.model;
 
-import java.util.Vector;
-
 public abstract class Option {
 
   protected static final int BANK_DAYS_PER_YEAR = 250;
@@ -13,7 +11,6 @@ public abstract class Option {
   private double maturity;
   private double volatility;
   private double riskFreeRate;
-  private Vector<PricePath> pricePaths;
   private int steps;
 
   public Option(Type optionType, double optionPrice, double strikePrice, double maturity, double volatility, double riskFreeRate, int steps) {
@@ -23,7 +20,6 @@ public abstract class Option {
     this.maturity = maturity;
     this.volatility = volatility;
     this.riskFreeRate = riskFreeRate;
-    this.pricePaths = new Vector<>();
     this.steps = steps;
   }
 
@@ -65,14 +61,6 @@ public abstract class Option {
 
   public void setRiskFreeRate(double riskFreeRate) {
     this.riskFreeRate = riskFreeRate;
-  }
-
-  public void addPricePath(PricePath pricePath) {
-    this.pricePaths.add(pricePath);
-  }
-
-  public Vector<PricePath> getPricePaths() {
-    return pricePaths;
   }
 
   public int getSteps() {

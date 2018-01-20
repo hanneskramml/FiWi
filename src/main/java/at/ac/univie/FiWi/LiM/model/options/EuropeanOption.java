@@ -1,4 +1,7 @@
-package at.ac.univie.FiWi.LiM.model;
+package at.ac.univie.FiWi.LiM.model.options;
+
+import at.ac.univie.FiWi.LiM.model.Option;
+import at.ac.univie.FiWi.LiM.model.PricePath;
 
 public class EuropeanOption extends Option {
 
@@ -13,13 +16,14 @@ public class EuropeanOption extends Option {
   @Override
   public double getPayoff(PricePath pricePath) {
 
+    double exp = Math.exp(-this.getRiskFreeRate() * this.getMaturity());
     double underlyingMarketValue = pricePath.getMaturityPrice();
 
     if (this.getOptionType().equals(Type.CALL))
-      return Math.max(underlyingMarketValue - this.getStrikePrice(), 0);
+      return exp * Math.max(underlyingMarketValue - this.getStrikePrice(), 0);
 
     else if (this.getOptionType().equals(Type.PUT))
-      return Math.max(this.getStrikePrice() - underlyingMarketValue, 0);
+      return exp * Math.max(this.getStrikePrice() - underlyingMarketValue, 0);
 
     else
       return 0;

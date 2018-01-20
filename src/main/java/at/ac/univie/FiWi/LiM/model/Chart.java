@@ -3,19 +3,21 @@ package at.ac.univie.FiWi.LiM.model;
 public class Chart {
 
   public static final String PRICE_PATHS = "Price Paths";
-  private String type;
-  private Option option;
+  public static final String OPTION_PRICING_ABUNDANCE = "Option Pricing Abundance";
 
-  public Chart(String type, Option option) {
+  private String type;
+  private Simulation simulation;
+
+  public Chart(String type, Simulation simulation) {
     this.type = type;
-    this.option = option;
+    this.simulation = simulation;
   }
 
   public String getType() {
     return type;
   }
 
-  public Option getOption() {
-    return option;
+  public Simulation getSimulation() {
+    return simulation;
   }
 }

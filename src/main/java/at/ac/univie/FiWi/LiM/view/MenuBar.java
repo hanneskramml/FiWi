@@ -7,7 +7,7 @@ public class MenuBar extends JMenuBar {
 
   public static final String MENU_ITEM_QUIT = "Quit Application";
   public static final String MENU_ITEM_PRICEPATH_GRAPH = "Show Price Paths";
-
+  public static final String MENU_ITEM_OPTIONPRICINGABUNDANCE_GRAPH = "Show Pricing Abundance";
 
   public MenuBar(ActionListener actionListener) {
     super();
@@ -27,6 +27,10 @@ public class MenuBar extends JMenuBar {
     JMenuItem pricePathItem = new JMenuItem(MENU_ITEM_PRICEPATH_GRAPH);
     pricePathItem.addActionListener(actionListener);
     chartMenu.add(pricePathItem);
+
+    JMenuItem optionPricingAbundanceItem = new JMenuItem(MENU_ITEM_OPTIONPRICINGABUNDANCE_GRAPH);
+    optionPricingAbundanceItem.addActionListener(actionListener);
+    chartMenu.add(optionPricingAbundanceItem);
 
     this.add(menuBar);
   }
