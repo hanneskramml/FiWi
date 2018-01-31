@@ -25,10 +25,10 @@ public class LookbackOption extends Option {
     if (lookbackType.equals(LookbackType.FLOATING)) {
 
       if (this.getOptionType().equals(Type.CALL))
-        return exp * pricePath.getMaturityPrice() - pricePath.getMinPrice();
+        return exp * Math.max(pricePath.getMaturityPrice() - pricePath.getMinPrice(), 0);
 
       else if (this.getOptionType().equals(Type.PUT))
-        return exp * pricePath.getMaxPrice() - pricePath.getMaturityPrice();
+        return exp * Math.max(pricePath.getMaxPrice() - pricePath.getMaturityPrice(), 0);
 
     } else if (lookbackType.equals(LookbackType.FIXED)) {
 

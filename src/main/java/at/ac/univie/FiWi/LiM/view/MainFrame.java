@@ -111,15 +111,15 @@ public class MainFrame extends JFrame {
   public void InitNumberSpinners(JPanel panel)
   {
 	  JLabel label1 = new JLabel("Initial Stock Value:", SwingConstants.LEFT);
-	  initialStockPriceSpinner = new JSpinner(new SpinnerNumberModel(100, 0, 10000000, 0.1));
+	  initialStockPriceSpinner = new JSpinner(new SpinnerNumberModel(100, 0, 10000000, 1.0));
 	  JLabel label2 = new JLabel("Strike Price:", SwingConstants.LEFT);
-	  strikePriceSpinner = new JSpinner(new SpinnerNumberModel(100, 0, 10000000, 0.1));
+	  strikePriceSpinner = new JSpinner(new SpinnerNumberModel(100, 0, 10000000, 1.0));
 	  JLabel label3 = new JLabel("Maturity:", SwingConstants.LEFT);
 	  maturitySpinner = new JSpinner(new SpinnerNumberModel(1, 0, 10, 0.1));    
 	  JLabel label4 = new JLabel("Volatility:", SwingConstants.LEFT);
 	  dispersionSpinner = new JSpinner(new SpinnerNumberModel(0.2, 0, 10, 0.1));
 	  JLabel label6 = new JLabel("Number of Simulations:", SwingConstants.LEFT);
-	  numOfSimulationsSpinner = new JSpinner(new SpinnerNumberModel(10000, 0, 100000000, 1));
+	  numOfSimulationsSpinner = new JSpinner(new SpinnerNumberModel(10000, 0, 1000000, 1));
 	  JLabel label7 = new JLabel("Risk-free rate:", SwingConstants.LEFT);
 	  riskFreeRateSpinner = new JSpinner(new SpinnerNumberModel(0.05, 0, 10, 0.1));  
 	  panel.add(label1);
