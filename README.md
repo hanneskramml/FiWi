@@ -1,2 +1,2 @@
 # FiWi
-Univie FiWi work group ==> Less is More
+Monte Carlo simulation for option pricing
